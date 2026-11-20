@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>GSCS - Galapitiyagama SANASA - Customer Feedback Kiosk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation & Branding Bar -->
+  <header class="header">
+    <div class="logo-area">
+      <div class="logo-wrapper">
+        <img src="logo.jpg" alt="GSCS Logo" class="brand-logo" id="brandLogo">
+      </div>
+      <div class="title-wrapper">
+        <h1 class="brand-main-title">GSCS</h1>
+        <p class="brand-society-title">GALAPITIYAGAMA SANASA CO-OPERATIVE SOCIETY</p>
+        <p class="brand-sinhala-title">ගලපිටියාගම සණස සමූපකාර සමිතිය</p>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <!-- Counter Badge -->
+      <span class="counter-badge" id="counterDisplay">Counter 01</span>
+      
+      <!-- Small Fullscreen Button -->
+      <button class="small-fullscreen-btn" id="smallFullscreenBtn" title="Fullscreen (සම්පූර්ණ තිරය)">
+        <svg id="fullscreenIcon" viewBox="0 0 24 24" width="17" height="17" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+        </svg>
+      </button>
+
+      <!-- Invisible Admin trigger button in corner -->
+      <button class="secret-admin-trigger" id="secretAdminTrigger" title="Admin Settings"></button>
+    </div>
+  </header>
+
+  <!-- Main Kiosk Body -->
+  <main class="main-container">
+
+    <!-- Screen 1: Feedback Selection (5 Emojis) -->
+    <div class="card survey-card active" id="surveyScreen">
+      
+      <div class="prompt-box">
+        <span class="prompt-badge">පාරිභෝගික තෘප්තිමත් සමීක්ෂණය • CSAT Survey</span>
+        <h2 class="prompt-heading-si">අද අපගේ සේවාව පිළිබඳ ඔබගේ අදහස කුමක්ද?</h2>
+        <p class="prompt-heading-en">How satisfied are you with our counter service today?</p>
+      </div>
+
+      <div class="emoji-grid">
+        <!-- 1: Very Dissatisfied -->
+        <button class="emoji-btn rating-1" data-rating="1" data-name-si="ඉතා අසතුටුදායකයි" data-name-en="Very Dissatisfied" data-emoji="😡">
+          <div class="emoji-icon">😡</div>
+          <div class="emoji-label-si">ඉතා අසතුටුයි</div>
+          <div class="emoji-label-en">Very Poor</div>
+          <div class="star-rating">★☆☆☆☆</div>
+        </button>
+
+        <!-- 2: Dissatisfied -->
+        <button class="emoji-btn rating-2" data-rating="2" data-name-si="අසතුටුදායකයි" data-name-en="Dissatisfied" data-emoji="🙁">
+          <div class="emoji-icon">🙁</div>
+          <div class="emoji-label-si">අසතුටුයි</div>
+          <div class="emoji-label-en">Poor</div>
+          <div class="star-rating">★★☆☆☆</div>
+        </button>
+
+        <!-- 3: Neutral -->
+        <button class="emoji-btn rating-3" data-rating="3" data-name-si="සාමාන්‍යයි" data-name-en="Neutral" data-emoji="😐">
+          <div class="emoji-icon">😐</div>
+          <div class="emoji-label-si">සාමාන්‍යයි</div>
+          <div class="emoji-label-en">Average</div>
+          <div class="star-rating">★★★☆☆</div>
+        </button>
+
+        <!-- 4: Satisfied -->
+        <button class="emoji-btn rating-4" data-rating="4" data-name-si="සතුටුදායකයි" data-name-en="Satisfied" data-emoji="🙂">
+          <div class="emoji-icon">🙂</div>
+          <div class="emoji-label-si">සතුටුයි</div>
+          <div class="emoji-label-en">Good</div>
+          <div class="star-rating">★★★★☆</div>
+        </button>
+
+        <!-- 5: Excellent -->
+        <button class="emoji-btn rating-5" data-rating="5" data-name-si="ඉතා විශිෂ්ටයි" data-name-en="Very Satisfied" data-emoji="🤩">
+          <div class="emoji-icon">🤩</div>
+          <div class="emoji-label-si">ඉතා විශිෂ්ටයි</div>
+          <div class="emoji-label-en">Excellent</div>
+          <div class="star-rating">★★★★★</div>
+        </button>
+      </div>
+
+      <div class="footer-note">
+        <span class="heart-icon">❤️</span> ඔබගේ වටිනා අදහස අපගේ සේවාව වඩාත් උසස් කිරීමට දායක වේ | Thank you for banking with GSCS!
+      </div>
+    </div>
+
+    <!-- Screen 2: Instant Thank You Confirmation -->
+    <div class="card thank-you-card" id="thankYouScreen">
+      <div class="thank-you-content">
+        <div class="selected-emoji-badge" id="selectedEmojiPreview">🤩</div>
+        <div class="thank-you-badge-tick">✓</div>
+        <h2 class="thank-you-title">ස්තූතියි! • Thank You!</h2>
+        <p class="thank-you-desc-si">ඔබගේ ප්‍රතිචාරය සාර්ථකව සටහන් කරගන්නා ලදී.</p>
+        <p class="thank-you-desc-en">Your feedback has been recorded into the system.</p>
+        
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="countdown-text">ඊළඟ පාරිභෝගිකයා සඳහා ස්වයංක්‍රීයව සුදානම් වේ...</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Settings Modal (Admin / Setup) -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>⚙️ GSCS Kiosk Settings (පද්ධති සැකසුම්)</h3>
+        <button class="close-btn" id="closeSettingsBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label for="scriptUrlInput">Google Apps Script Web App URL:</label>
+          <input type="url" id="scriptUrlInput" value="https://script.google.com/macros/s/AKfycbwgBdc2oglmwilsJfKPDnAUPrVwP0roCDXbSVj0Xq0H54THVJPcLV5EdE8zpsusNU6YGA/exec" placeholder="https://script.google.com/macros/s/.../exec">
+          <small>Google Sheet එකේ Apps Script එක deploy කර ලබාගත් Web App URL එක මෙහි පේස්ට් කරන්න.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="counterNameInput">කවුන්ටරය / Counter Name:</label>
+          <input type="text" id="counterNameInput" placeholder="Counter 01 (Cashier 1)">
+          <small>මෙම ටැබ් එක තබා ඇති කවුන්ටරයේ අංකය හෝ කැෂියර් මහතා/මියගේ නම.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="branchNameInput">ශාඛාව / Branch:</label>
+          <input type="text" id="branchNameInput" placeholder="Galapitiyagama Main">
+        </div>
+
+        <div class="form-group-checkbox">
+          <label>
+            <input type="checkbox" id="showCounterToggle" checked> කවුන්ටර ලාංඡනය (Counter Badge) තිරයේ පෙන්වන්න
+          </label>
+        </div>
+
+        <div class="form-group-checkbox">
+          <label>
+            <input type="checkbox" id="soundToggle" checked> ඔබන විට ශබ්ද සංඥා (Touch Chime Sound) සක්‍රීය කරන්න
+          </label>
+        </div>
+
+        <div class="form-group-checkbox">
+          <label>
+            <input type="checkbox" id="wakeLockToggle" checked> තිරය නිවී යාම වැළැක්වීම (Always Keep Screen Awake) සක්‍රීය කරන්න
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-secondary" id="fullscreenToggleModalBtn">⛶ Fullscreen</button>
+          <button class="btn btn-secondary" id="testConnectionBtn">ටෙස්ට් කරන්න (Test Link)</button>
+          <button class="btn btn-primary" id="saveSettingsBtn">සුරකින්න (Save)</button>
+        </div>
+
+        <div id="testStatus" class="test-status"></div>
+
+        <!-- Tablet Wake-lock tips -->
+        <div class="tablet-wake-guide">
+          <h4>📱 ටැබ් එකේ Screen එක Off නොවී තබා ගැනීමට උපදෙස්:</h4>
+          <ul>
+            <li>මෙම ඇප් එක විවෘතව ඇති විට <strong>Screen Wake Lock</strong> ක්‍රමලේඛය මගින් තිරය නිරන්තරයෙන් On කර තබයි.</li>
+            <li><strong>Android Tab එකේ:</strong> Settings &gt; Display &gt; Screen Timeout එක උපරිම අගයට දමන්න. (හෝ Developer options හි <em>"Stay awake while charging"</em> සක්‍රීය කර Charger එක නිරන්තරයෙන් සවි කර තබන්න).</li>
+            <li><strong>iPad එකේ:</strong> Settings &gt; Display &amp; Brightness &gt; Auto-Lock &gt; <em>"Never"</em> තෝරන්න.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin PIN Prompt Modal -->
+  <div class="modal-overlay" id="pinModal">
+    <div class="modal pin-modal">
+      <div class="modal-header">
+        <h3>ආරක්ෂක කේතය (Admin PIN)</h3>
+        <button class="close-btn" id="closePinBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>සැකසුම් විවෘත කිරීමට රහස් අංකය ඇතුළත් කරන්න (Default: <code>1234</code>):</p>
+        <input type="password" id="pinInput" maxlength="6" placeholder="****" class="pin-field">
+        <div class="form-actions">
+          <button class="btn btn-primary" id="submitPinBtn">තහවුරු කරන්න</button>
+        </div>
+        <p id="pinError" class="error-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
